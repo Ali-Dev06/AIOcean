@@ -13,6 +13,11 @@ dist
 dist-ssr
 *.local
 
+# PHP
+packages/api/vendor/
+packages/api/.env
+*.cache
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
