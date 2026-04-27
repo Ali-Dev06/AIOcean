@@ -1,0 +1,28 @@
+{
+    "name": "aiocean/api",
+    "description": "AI Tools Discovery Platform — API",
+    "type": "project",
+    "license": "proprietary",
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=8.2"
+    },
+    "require-dev": {},
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "dev": [
+            "Composer\\Config::disableProcessTimeout",
+            "php -S localhost:8080 -t public/"
+        ],
+        "test": "phpunit"
+    }
+}
