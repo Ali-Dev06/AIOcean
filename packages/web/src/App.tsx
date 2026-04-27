@@ -1,37 +1,55 @@
-import { useState, useMemo } from "react"
+import { useState, useEffect } from "react"
 import { Header } from "./components/Header"
 import { ToolGrid } from "./components/ToolGrid"
-import type { Tool } from "./components/ToolCard"
 import { Input } from "./components/ui/input"
 import { Button } from "./components/ui/button"
 import { Badge } from "./components/ui/badge"
 import { Search, ChevronDown, X, Loader2 } from "lucide-react"
 import TextRotate from "./components/fancy/text/text-rotate"
 import { LayoutGroup, motion } from "motion/react"
-import { useApi } from "./hooks/use-api"
-
-interface ToolsResponse {
-  tools: Tool[]
-  total: number
-  categories: string[]
-}
+import { getTools, type ToolsResponse } from "./shared/api/tools"
 
 export function App() {
   const [searchQuery, setSearchQuery] = useState("")
   const [activeCategory, setActiveCategory] = useState<string | null>(null)
   const [filtersExpanded, setFiltersExpanded] = useState(false)
+  const [data, setData] = useState<ToolsResponse | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
-  // Build the API query string
-  const queryParams = useMemo(() => {
-    const params = new URLSearchParams()
-    if (searchQuery) params.set("search", searchQuery)
-    if (activeCategory) params.set("category", activeCategory)
-    return params.toString()
+  useEffect(() => {
+    let cancelled = false
+
+    async function loadTools() {
+      setLoading(true)
+      setError(null)
+
+      try {
+        const result = await getTools({
+          search: searchQuery || undefined,
+          category: activeCategory,
+        })
+
+        if (!cancelled) {
+          setData(result)
+        }
+      } catch (err) {
+        if (!cancelled) {
+          setError(err instanceof Error ? err.message : "Unknown error")
+        }
+      } finally {
+        if (!cancelled) {
+          setLoading(false)
+        }
+      }
+    }
+
+    loadTools()
+
+    return () => {
+      cancelled = true
+    }
   }, [searchQuery, activeCategory])
-
-  const { data, loading, error } = useApi<ToolsResponse>(
-    `/tools${queryParams ? `?${queryParams}` : ""}`
-  )
 
   const tools = data?.tools ?? []
   const categories = data?.categories ?? []
