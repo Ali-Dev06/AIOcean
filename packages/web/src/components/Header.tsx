@@ -1,9 +1,6 @@
 import { Button } from "@/components/ui/button"
-import { useNavigate } from "react-router-dom"
 
 export function Header() {
-  const navigate = useNavigate()
-
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto flex h-14 items-center justify-between px-4">
@@ -23,11 +20,7 @@ export function Header() {
           >
             Submit Tool
           </a>
-          <Button
-            size="sm"
-            className="hidden md:inline-flex"
-            onClick={() => navigate("/login")}
-          >
+          <Button size="sm" className="hidden md:inline-flex">
             Sign In
           </Button>
         </nav>
