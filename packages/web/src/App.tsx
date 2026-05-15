@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import { MainLayout } from "./layouts/MainLayout"
 import { HomePage } from "./pages/HomePage"
 import { LoginPage } from "./pages/LoginPage"
+import { SignUpPage } from "./pages/SignUpPage"
 import { DashboardPage } from "./pages/DashboardPage"
 import { ToolDetailPage } from "./pages/ToolDetailPage"
 import { AuthProvider, useAuth } from "./hooks/use-auth"
@@ -36,6 +37,7 @@ export function App() {
           </Route>
 
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignUpPage />} />
         </Routes>
       </AuthProvider>
     </BrowserRouter>
