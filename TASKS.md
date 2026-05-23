@@ -125,14 +125,15 @@ Full docs: `docs/GETTING_STARTED.md`, `docs/backend-feature-guide.md`
 - Reference: `packages/api/src/Core/Features/` pattern (same as Reviews, Votes, etc.)
 
 **Task A3 — Email Integration**
-- Wire up Resend SDK (already in composer.json) for transactional emails
-- Welcome email on signup, password reset email, submission status notification
-- Configuration in `.env` (see `.env.example`)
 
-**Task A4 — Seed Real Data**
+- its alreya there , just use it `EmailService`
+
+**Task A4 — Seed Real Data** 
 - Edit `packages/api/bin/seed.php`
 - Add real tools (not "Tool 1", "Tool 2"), real categories, real providers (OpenAI, Anthropic, Google, Meta, etc.), real models (GPT-4o, Claude 3.5, Gemini 2.0, Llama 3, etc.)
 - Make the directory feel populated out of the box
+>Ghn3tek w7d script i3mer l models mn dak `models.dev` , gha sber
+
 
 **Task A5 — User Profile / Settings**
 - Frontend: Profile page (`/settings` or `/profile`) with editable name, email, avatar
@@ -159,7 +160,7 @@ Full docs: `docs/GETTING_STARTED.md`, `docs/backend-feature-guide.md`
 - Support public/private toggle per collection
 - Show tool count per collection on the collection card
 
-**Task Y3 — Submit Tool**
+**Task Y3 — Submit Tool** (haddi xof yanta ya oussam li bgha yakhdha ola khdliwa ga3 lya )
 - File: `SubmitToolDialog.tsx` (opened via `?submit=true` query param in `MainLayout.tsx`)
 - Form fields: name, short description, URL, full description, pricing model, category selection
 - Wire to `POST /api/submissions` (uses `submitTool` from `shared/api/submissions.ts`)
@@ -182,7 +183,6 @@ Full docs: `docs/GETTING_STARTED.md`, `docs/backend-feature-guide.md`
 
 **Task O2 — Dashboard** just call it profile page i guess
 - File: `ProfilePage.tsx`
-- Metric cards: Collections count, Saved tools count, Submissions approved/total
 - Tabs: Saved Collections list + My Submissions list
 - Wire to `getMySubmissions` + `getCollections`
 - "Submit a Tool" CTA button
@@ -190,11 +190,13 @@ Full docs: `docs/GETTING_STARTED.md`, `docs/backend-feature-guide.md`
 
 **Task O3 — Tool Directory UI (HomePage)**
 - File: `HomePage.tsx` + `ToolGrid.tsx` + `ToolCard.tsx`
-- Wire search input to `GET /api/tools?search=...`
-- Category filter sidebar + pricing/platform/rating filters
+- for auted users add  filter sidebar (as base for more complex future filters) + pricing/platform/rating filters
 - Sort selector (featured, most upvoted, highest rated, most popular, name A-Z)
-- Responsive grid layout for tool cards
-- Loading state, empty state, error state
+- maybe remove that BIGG landing section for authed users
+
+
+
+> **Database Migrations** :  If your feature needs a new table (e.g. password reset tokens), create a migration with Phinx (packages/api/vendor/bin/phinx generate YourMigration) and run it with pnpm migrate. Existing migrations are in packages/api/migrations/.
 
 ---
 
