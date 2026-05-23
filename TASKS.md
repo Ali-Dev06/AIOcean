@@ -98,6 +98,15 @@ pnpm dev:api    # terminal 1 — http://localhost:8080
 pnpm dev        # terminal 2 — http://localhost:5173
 ```
 
+
+## for env
+
+```bash
+cd packages/api 
+cp .env.example .env
+```
+and put there your resend api key , (we will decide how u will get it later, passi msg f grp)
+
 Type check:
 ```bash
 pnpm --filter @aiocean/web typecheck
