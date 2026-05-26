@@ -20,7 +20,7 @@ export function Header() {
           >
             Submit Tool
           </a>
-          <Button size="sm" className="hidden md:inline-flex">
+          <Button size="sm" className="hidden md:inline-flex" onClick={() => (window.location.href = "/login")}>
             Sign In
           </Button>
         </nav>
