@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.1",
   "scripts": {
-        "dev": "concurrently \"pnpm dev:web\" \"pnpm dev:api\"",
+        "dev": "concurrently \"pnpm dev:web\" \"pnpm dev:api\" \"pnpm dev:agent\"",
 
     "dev:web": "pnpm --filter @aiocean/web dev",
     "dev:api": "cd packages/api && composer dev",
